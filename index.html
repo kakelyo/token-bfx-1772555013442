@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFX (Best Fing X) - The Last Sanctuary</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="BFX (Best Fing X) is a community-driven Web3 project. No KYC, no withdrawal limits, just pure freedom and fun. Join the revolution!">
+    <meta name="keywords" content="BFX, Best Fing X, Web3, crypto, launchpad, BSC, decentralized, community, no KYC, freedom, fun">
+    <meta name="author" content="BFX Community">
+
+    <!-- OpenGraph Tags for Social Media -->
+    <meta property="og:title" content="BFX (Best Fing X) - The Last Sanctuary">
+    <meta property="og:description" content="Forget KYC, withdrawal limits, and constant 'maintenance' of traditional FX. BFX (Best Fing X) is the last sanctuary for the community. No bosses, only brothers; no manipulation, only celebration. The world is a giant stage, let's be the fiercest act.">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:url" content="https://www.bfx.com"> <!-- Placeholder URL -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BFX">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@BFX">
+    <meta name="twitter:creator" content="@BFX">
+    <meta name="twitter:title" content="BFX (Best Fing X) - The Last Sanctuary">
+    <meta name="twitter:description" content="Forget KYC, withdrawal limits, and constant 'maintenance' of traditional FX. BFX (Best Fing X) is the last sanctuary for the community. No bosses, only brothers; no manipulation, only celebration. The world is a giant stage, let's be the fiercest act.">
+    <meta name="twitter:image" content="logo.png">
+
+    <style>
+        /* Basic Reset & Global Styles */
+        :root {
+            --color-primary: #00f0ff; /* Cyan/Electric Blue */
+            --color-secondary: #ff00ff; /* Magenta */
+            --color-accent: #00ff88; /* Neon Green */
+            --color-dark-bg: #0a0a1a; /* Very Dark Blue */
+            --color-dark-bg-light: #1a1a3a; /* Slightly Lighter Dark Blue */
+            --color-text-light: #e0e0e0; /* Light Gray */
+            --color-text-dark: #a0a0a0; /* Darker Gray */
+            --font-family-primary: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            --font-family-mono: 'SF Mono', 'Roboto Mono', 'Courier New', monospace;
+            --border-radius: 8px;
+            --spacing-unit: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family-primary);
+            background-color: var(--color-dark-bg);
+            color: var(--color-text-light);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: var(--spacing-unit);
+            color: var(--color-text-light);
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.8rem; }
+        p { margin-bottom: var(--spacing-unit); }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--color-dark-bg-light);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 10, 26, 0.8); /* Semi-transparent dark blue */
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+            filter: drop-shadow(0 0 5px var(--color-primary));
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--color-text-light);
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px;
+        }
+
+        .lang-switcher button {
+            background: none;
+            border: 1px solid var(--color-primary);
+            color: var(--color-primary);
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switcher button:hover {
+            background-color: var(--color-primary);
+            color: var(--color-dark-bg);
+            box-shadow: 0 0 10px var(--color-primary);
+        }
+
+        .lang-switcher button.active {
+            background-color: var(--color-primary);
+            color: var(--color-dark-bg);
+            box-shadow: 0 0 15px var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(135deg, var(--color-dark-bg) 0%, #000000 100%);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+            animation: pulse-glow 10s infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        #hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+            line-height: 1.1;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--color-text-dark);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+            color: var(--color-dark-bg);
+            padding: 15px 30px;
+            border-radius: var(--border-radius);
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.7);
+            background: linear-gradient(45deg, var(--color-accent), var(--color-primary));
+        }
+
+        /* Section Headings */
+        .section-heading {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
+        /* About Section */
+        #about .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        #about .content-grid img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        }
+
+        #about .text-content {
+            font-size: 1.1rem;
+            color: var(--color-text-dark);
+        }
+
+        /* Tokenomics Section */
+        #tokenomics .token-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .token-card {
+            background-color: var(--color-dark-bg-light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .token-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0, 240, 255, 0.3);
+        }
+
+        .token-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .token-card p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--color-accent);
+            font-family: var(--font-family-mono);
+        }
+
+        .token-distribution {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .distribution-item {
+            background-color: var(--color-dark-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--color-primary);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.05);
+        }
+
+        .distribution-item span:first-child {
+            font-weight: 600;
+            color: var(--color-text-light);
+        }
+
+        .distribution-item span:last-child {
+            font-family: var(--font-family-mono);
+            color: var(--color-accent);
+            font-weight: bold;
+        }
+
+        /* Roadmap Section */
+        #roadmap .roadmap-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        #roadmap .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .roadmap-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .roadmap-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .roadmap-item-content {
+            width: 45%;
+            background-color: var(--color-dark-bg-light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .roadmap-item-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0, 240, 255, 0.3);
+        }
+
+        .roadmap-item-content h3 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .roadmap-item-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .roadmap-item-content ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+            color: var(--color-text-dark);
+        }
+
+        .roadmap-item-content ul li::before {
+            content: '•';
+            color: var(--color-accent);
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+
+        .roadmap-item-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            border: 3px solid var(--color-dark-bg);
+            box-shadow: 0 0 15px var(--color-primary);
+            z-index: 1;
+        }
+
+        /* Social Links Section */
+        #social-links {
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .social-icon-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--color-text-light);
+            font-weight: 600;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icon-link:hover {
+            transform: translateY(-5px);
+            color: var(--color-primary);
+        }
+
+        .social-icon-link svg {
+            width: 60px;
+            height: 60px;
+            fill: var(--color-primary);
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));
+            transition: fill 0.3s ease, filter 0.3s ease;
+        }
+
+        .social-icon-link:hover svg {
+            fill: var(--color-accent);
+            filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.7));
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-dark-bg-light);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+            color: var(--color-text-dark);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 2rem; }
+            .section-heading { font-size: 2.5rem; }
+
+            nav ul {
+                gap: 20px;
+            }
+
+            .roadmap-item {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .roadmap-item:nth-child(odd) {
+                flex-direction: column;
+            }
+
+            .roadmap-item-content {
+                width: 90%;
+                margin-bottom: 30px;
+            }
+
+            #roadmap .roadmap-timeline::before {
+                left: 50%;
+            }
+
+            .roadmap-item-dot {
+                left: 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .lang-switcher {
+                margin-left: 0;
+                justify-content: center;
+            }
+
+            #hero h1 {
+                font-size: 3rem;
+            }
+
+            #hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-heading {
+                font-size: 2rem;
+            }
+
+            #about .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .token-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .roadmap-item-content {
+                width: 100%;
+            }
+
+            #roadmap .roadmap-timeline::before {
+                left: 20px; /* Move timeline to left for mobile */
+                transform: translateX(0);
+            }
+
+            .roadmap-item {
+                justify-content: flex-start;
+                margin-left: 0;
+            }
+
+            .roadmap-item-content {
+                width: calc(100% - 60px); /* Adjust width for left timeline */
+                margin-left: 60px;
+            }
+
+            .roadmap-item-dot {
+                left: 20px;
+                transform: translate(-50%, -50%);
+            }
+
+            .social-icons {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .section-heading { font-size: 1.8rem; }
+            .btn-primary {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            .logo img {
+                height: 30px;
+            }
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#hero" class="logo">
+                <img src="logo.png" alt="BFX Logo">
+                BFX
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#hero" data-i18n="nav_home">Home</a></li>
+                    <li><a href="#about" data-i18n="nav_about">About</a></li>
+                    <li><a href="#tokenomics" data-i18n="nav_tokenomics">Tokenomics</a></li>
+                    <li><a href="#roadmap" data-i18n="nav_roadmap">Roadmap</a></li>
+                    <li><a href="#social-links" data-i18n="nav_social">Social</a></li>
+                </ul>
+            </nav>
+            <div class="lang-switcher">
+                <button data-lang="en" class="active">EN</button>
+                <button data-lang="zh">ZH</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1 data-i18n="hero_title">BFX (Best Fing X)</h1>
+                <p data-i18n="hero_subtitle">The Last Sanctuary. No Bosses, No Limits, Just Pure Fun.</p>
+                <a href="#" class="btn-primary" data-i18n="hero_cta">Buy BFX Now</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-heading" data-i18n="about_title">About BFX</h2>
+                <div class="content-grid">
+                    <div class="text-content">
+                        <p data-i18n="about_p1">Forget KYC, withdrawal limits, and constant 'maintenance' of traditional FX. BFX (Best Fing X) is the last sanctuary for the community. No bosses, only brothers; no manipulation, only celebration. The world is a giant stage, let's be the fiercest act.</p>
+                        <p data-i18n="about_p2">BFX is more than just a token; it's a movement. We believe in true decentralization, empowering our community, and creating a space where everyone can thrive without unnecessary restrictions. Join us in building a future where freedom and fun are paramount.</p>
+                        <p data-i18n="about_p3">Our mission is to provide a platform that is transparent, fair, and truly community-driven. With BFX, you're not just an investor; you're a part of the family, shaping the destiny of the project. Welcome to the Best Fing Xperience!</p>
+                    </div>
+                    <!-- Placeholder for an image related to the project -->
+                    <!-- <img src="about-image.png" alt="About BFX"> -->
+                </div>
+            </div>
+        </section>
+
+        <section id="tokenomics">
+            <div class="container">
+                <h2 class="section-heading" data-i18n="tokenomics_title">Tokenomics</h2>
+                <div class="token-info-grid">
+                    <div class="token-card">
+                        <h3 data-i18n="token_symbol">Symbol</h3>
+                        <p>BFX</p>
+                    </div>
+                    <div class="token-card">
+                        <h3 data-i18n="token_name">Name</h3>
+                        <p>Best Fing X</p>
+                    </div>
+                    <div class="token-card">
+                        <h3 data-i18n="token_total_supply">Total Supply</h3>
+                        <p>1,000,000,000</p>
+                    </div>
+                    <div class="token-card">
+                        <h3 data-i18n="token_buy_tax">Buy Tax</h3>
+                        <p>3%</p>
+                    </div>
+                    <div class="token-card">
+                        <h3 data-i18n="token_sell_tax">Sell Tax</h3>
+                        <p>3%</p>
+                    </div>
+                    <div class="token-card">
+                        <h3 data-i18n="token_chain">Chain</h3>
+                        <p>BSC</p>
+                    </div>
+                </div>
+
+                <h3 style="text-align: center; margin-top: 60px; margin-bottom: 30px;" data-i18n="token_distribution_title">Token Distribution</h3>
+                <div class="token-distribution">
+                    <div class="distribution-item">
+                        <span data-i18n="dist_liquidity">Liquidity Pool</span>
+                        <span>50%</span>
+                    </div>
+                    <div class="distribution-item">
+                        <span data-i18n="dist_marketing">Marketing & Partnerships</span>
+                        <span>20%</span>
+                    </div>
+                    <div class="distribution-item">
+                        <span data-i18n="dist_development">Development & Ecosystem</span>
+                        <span>15%</span>
+                    </div>
+                    <div class="distribution-item">
+                        <span data-i18n="dist_community">Community Rewards & Airdrops</span>
+                        <span>10%</span>
+                    </div>
+                    <div class="distribution-item">
+                        <span data-i18n="dist_team">Team & Advisors (Locked)</span>
+                        <span>5%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap">
+            <div class="container">
+                <h2 class="section-heading" data-i18n="roadmap_title">Roadmap</h2>
+                <div class="roadmap-timeline">
+                    <div class="roadmap-item">
+                        <div class="roadmap-item-content">
+                            <h3 data-i18n="roadmap_q1_title">Q1 2024: Genesis Launch</h3>
+                            <ul>
+                                <li data-i18n="roadmap_q1_li1">Smart Contract Deployment & Audit</li>
+                                <li data-i18n="roadmap_q1_li2">Website & Social Media Launch</li>
+                                <li data-i18n="roadmap_q1_li3">PancakeSwap Listing & Liquidity Lock</li>
+                                <li data-i18n="roadmap_q1_li4">Initial Marketing Campaigns & Community Building</li>
+                            </ul>
+                        </div>
+                        <div class="roadmap-item-dot"></div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-item-content">
+                            <h3 data-i18n="roadmap_q2_title">Q2 2024: Expansion & Utility</h3>
+                            <ul>
+                                <li data-i18n="roadmap_q2_li1">CEX Listings (Tier 2/3)</li>
+                                <li data-i18n="roadmap_q2_li2">Staking Platform Development</li>
+                                <li data-i18n="roadmap_q2_li3">Partnerships with Web3 Projects</li>
+                                <li data-i18n="roadmap_q2_li4">Community Governance Implementation</li>
+                            </ul>
+                        </div>
+                        <div class="roadmap-item-dot"></div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-item-content">
+                            <h3 data-i18n="roadmap_q3_title">Q3 2024: Ecosystem Growth</h3>
+                            <ul>
+                                <li data-i18n="roadmap_q3_li1">Launch of BFX NFT Collection</li>
+                                <li data-i18n="roadmap_q3_li2">Development of BFX Swap/DEX</li>
+                                <li data-i18n="roadmap_q3_li3">Further CEX Listings (Tier 1)</li>
+                                <li data-i18n="roadmap_q3_li4">Global Marketing & Ambassador Program</li>
+                            </ul>
+                        </div>
+                        <div class="roadmap-item-dot"></div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-item-content">
+                            <h3 data-i18n="roadmap_q4_title">Q4 2024: Innovation & Beyond</h3>
+                            <ul>
+                                <li data-i18n="roadmap_q4_li1">Cross-Chain Integration</li>
+                                <li data-i18n="roadmap_q4_li2">Launch of BFX Gaming/Metaverse Initiatives</li>
+                                <li data-i18n="roadmap_q4_li3">Decentralized Autonomous Organization (DAO) Full Implementation</li>
+                                <li data-i18n="roadmap_q4_li4">Continuous Innovation & Community-Driven Features</li>
+                            </ul>
+                        </div>
+                        <div class="roadmap-item-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="social-links">
+            <div class="container">
+                <h2 class="section-heading" data-i18n="social_title">Join Our Community</h2>
+                <p data-i18n="social_subtitle">Connect with us on our official channels and become part of the BFX family!</p>
+                <div class="social-icons">
+                    <a href="https://t.me/BFX" target="_blank" rel="noopener noreferrer" class="social-icon-link">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm8.01 8.75l-2.81 13.12c-.24 1.06-.86 1.31-1.75.82l-4.25-3.13-2.05 1.98c-.23.23-.42.42-.83.42l.3-.95 1.4-4.25L17.5 6.5c.7-.62-.17-.9-.8-.4L7.5 13.5l-4.15-1.28c-1.05-.32-1.07-1.05.22-1.55L18.8 6.2c.87-.3 1.6.2 1.2 2.55z"/>
+                        </svg>
+                        <span data-i18n="social_telegram">Telegram</span>
+                        <span>@BFX</span>
+                    </a>
+                    <a href="https://twitter.com/BFX" target="_blank" rel="noopener noreferrer" class="social-icon-link">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184A4.925 4.925 0 0017.5 2c-2.718 0-4.926 2.208-4.926 4.926 0 .386.044.762.122 1.127C8.557 7.872 5.011 5.91 2.65 2.925c-.47.807-.745 1.747-.745 2.759 0 1.709.87 3.213 2.188 4.096-.807-.025-1.568-.247-2.228-.616v.061c0 2.385 1.699 4.377 3.95 4.829-.412.11-.847.171-1.295.171-.317 0-.626-.031-.929-.088.636 1.977 2.486 3.41 4.695 3.449-1.688 1.328-3.804 2.122-6.102 2.122-.398 0-.79-.023-1.175-.069 2.18 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209-.005-.417-.013-.625A10.005 10.005 0 0024 4.59z"/>
+                        </svg>
+                        <span data-i18n="social_twitter">Twitter</span>
+                        <span>@BFX</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p data-i18n="footer_copyright">&copy; 2024 BFX (Best Fing X). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_about: "About",
+                nav_tokenomics: "Tokenomics",
+                nav_roadmap: "Roadmap",
+                nav_social: "Social",
+                hero_title: "BFX (Best Fing X)",
+                hero_subtitle: "The Last Sanctuary. No Bosses, No Limits, Just Pure Fun.",
+                hero_cta: "Buy BFX Now",
+                about_title: "About BFX",
+                about_p1: "Forget KYC, withdrawal limits, and constant 'maintenance' of traditional FX. BFX (Best Fing X) is the last sanctuary for the community. No bosses, only brothers; no manipulation, only celebration. The world is a giant stage, let's be the fiercest act.",
+                about_p2: "BFX is more than just a token; it's a movement. We believe in true decentralization, empowering our community, and creating a space where everyone can thrive without unnecessary restrictions. Join us in building a future where freedom and fun are paramount.",
+                about_p3: "Our mission is to provide a platform that is transparent, fair, and truly community-driven. With BFX, you're not just an investor; you're a part of the family, shaping the destiny of the project. Welcome to the Best Fing Xperience!",
+                tokenomics_title: "Tokenomics",
+                token_symbol: "Symbol",
+                token_name: "Name",
+                token_total_supply: "Total Supply",
+                token_buy_tax: "Buy Tax",
+                token_sell_tax: "Sell Tax",
+                token_chain: "Chain",
+                token_distribution_title: "Token Distribution",
+                dist_liquidity: "Liquidity Pool",
+                dist_marketing: "Marketing & Partnerships",
+                dist_development: "Development & Ecosystem",
+                dist_community: "Community Rewards & Airdrops",
+                dist_team: "Team & Advisors (Locked)",
+                roadmap_title: "Roadmap",
+                roadmap_q1_title: "Q1 2024: Genesis Launch",
+                roadmap_q1_li1: "Smart Contract Deployment & Audit",
+                roadmap_q1_li2: "Website & Social Media Launch",
+                roadmap_q1_li3: "PancakeSwap Listing & Liquidity Lock",
+                roadmap_q1_li4: "Initial Marketing Campaigns & Community Building",
+                roadmap_q2_title: "Q2 2024: Expansion & Utility",
+                roadmap_q2_li1: "CEX Listings (Tier 2/3)",
+                roadmap_q2_li2: "Staking Platform Development",
+                roadmap_q2_li3: "Partnerships with Web3 Projects",
+                roadmap_q2_li4: "Community Governance Implementation",
+                roadmap_q3_title: "Q3 2024: Ecosystem Growth",
+                roadmap_q3_li1: "Launch of BFX NFT Collection",
+                roadmap_q3_li2: "Development of BFX Swap/DEX",
+                roadmap_q3_li3: "Further CEX Listings (Tier 1)",
+                roadmap_q3_li4: "Global Marketing & Ambassador Program",
+                roadmap_q4_title: "Q4 2024: Innovation & Beyond",
+                roadmap_q4_li1: "Cross-Chain Integration",
+                roadmap_q4_li2: "Launch of BFX Gaming/Metaverse Initiatives",
+                roadmap_q4_li3: "Decentralized Autonomous Organization (DAO) Full Implementation",
+                roadmap_q4_li4: "Continuous Innovation & Community-Driven Features",
+                social_title: "Join Our Community",
+                social_subtitle: "Connect with us on our official channels and become part of the BFX family!",
+                social_telegram: "Telegram",
+                social_twitter: "Twitter",
+                footer_copyright: "&copy; 2024 BFX (Best Fing X). All rights reserved."
+            },
+            zh: {
+                nav_home: "首页",
+                nav_about: "关于我们",
+                nav_tokenomics: "代币经济学",
+                nav_roadmap: "路线图",
+                nav_social: "社交媒体",
+                hero_title: "BFX (Best Fing X)",
+                hero_subtitle: "最后的净土。没有老板，没有限制，只有纯粹的乐趣。",
+                hero_cta: "立即购买 BFX",
+                about_title: "关于 BFX",
+                about_p1: "忘了那些需要 KYC、限制提现、动不动就‘维护’的 FX 吧。BFX (Best Fing X)* 是属于社区的最后一片净土。没有老板，只有老铁；没有插针，只有狂欢。既然世界是个巨大的草台班子，那我们就做最猛的那个。",
+                about_p2: "BFX 不仅仅是一个代币；它是一场运动。我们相信真正的去中心化，赋能我们的社区，并创造一个每个人都能在没有不必要限制的情况下茁壮成长的空间。加入我们，共同建设一个自由和乐趣至上的未来。",
+                about_p3: "我们的使命是提供一个透明、公平且真正由社区驱动的平台。有了 BFX，您不仅仅是投资者；您是家庭的一部分，塑造着项目的命运。欢迎来到 Best Fing Xperience！",
+                tokenomics_title: "代币经济学",
+                token_symbol: "符号",
+                token_name: "名称",
+                token_total_supply: "总供应量",
+                token_buy_tax: "买入税",
+                token_sell_tax: "卖出税",
+                token_chain: "链",
+                token_distribution_title: "代币分配",
+                dist_liquidity: "流动性池",
+                dist_marketing: "市场营销与合作",
+                dist_development: "开发与生态系统",
+                dist_community: "社区奖励与空投",
+                dist_team: "团队与顾问 (锁定)",
+                roadmap_title: "路线图",
+                roadmap_q1_title: "2024年第一季度：创世启动",
+                roadmap_q1_li1: "智能合约部署与审计",
+                roadmap_q1_li2: "网站与社交媒体发布",
+                roadmap_q1_li3: "PancakeSwap 上市与流动性锁定",
+                roadmap_q1_li4: "初期市场推广与社区建设",
+                roadmap_q2_title: "2024年第二季度：扩展与实用性",
+                roadmap_q2_li1: "CEX 上市 (二/三线)",
+                roadmap_q2_li2: "质押平台开发",
+                roadmap_q2_li3: "与 Web3 项目合作",
+                roadmap_q2_li4: "社区治理实施",
+                roadmap_q3_title: "2024年第三季度：生态系统增长",
+                roadmap_q3_li1: "BFX NFT 系列发布",
+                roadmap_q3_li2: "BFX Swap/DEX 开发",
+                roadmap_q3_li3: "更多 CEX 上市 (一线)",
+                roadmap_q3_li4: "全球市场推广与大使计划",
+                roadmap_q4_title: "2024年第四季度：创新与超越",
+                roadmap_q4_li1: "跨链整合",
+                roadmap_q4_li2: "BFX 游戏/元宇宙计划启动",
+                roadmap_q4_li3: "去中心化自治组织 (DAO) 全面实施",
+                roadmap_q4_li4: "持续创新与社区驱动功能",
+                social_title: "加入我们的社区",
+                social_subtitle: "通过我们的官方渠道与我们联系，成为 BFX 家族的一员！",
+                social_telegram: "电报",
+                social_twitter: "推特",
+                footer_copyright: "&copy; 2024 BFX (Best Fing X)。保留所有权利。"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            document.documentElement.lang = lang; // Update HTML lang attribute
+            localStorage.setItem('selectedLanguage', lang); // Store preference
+            updateLangSwitcherButtons(lang);
+        }
+
+        function updateLangSwitcherButtons(activeLang) {
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                if (button.getAttribute('data-lang') === activeLang) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize language switcher
+        document.addEventListener('DOMContentLoaded', () => {
+            const storedLang = localStorage.getItem('selectedLanguage') || 'en'; // Default to English
+            setLanguage(storedLang);
+
+            document.querySelectorAll('.lang-switcher button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    setLanguage(event.target.getAttribute('data-lang'));
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
